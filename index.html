@@ -203,6 +203,22 @@ h1{font-size:clamp(62px,10vw,112px);font-weight:700;line-height:.95;letter-spaci
 #p-tv .carte{cursor:pointer}
 #p-tv .carte.on{border-color:rgba(229,169,60,.5);background:rgba(229,169,60,.055)}
 
+/* partage */
+.partage{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.partage .lib{font-size:14px;color:var(--t3);margin-inline-end:4px}
+.partage a,.partage button{width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--bord);background:var(--voile);color:var(--t2);cursor:pointer;text-decoration:none;
+  transition:color .25s,border-color .25s,background .25s,transform .25s}
+.partage a:hover,.partage button:hover{color:var(--ambre-c);border-color:rgba(229,169,60,.45);transform:translateY(-2px)}
+.partage svg{width:19px;height:19px}
+.partage .natif{width:auto;padding-inline:16px;border-radius:999px;gap:8px;font-family:Tajawal;font-size:14.5px;font-weight:700;color:var(--t1)}
+.partage .copie-ok{color:#1a1205;background:var(--ambre);border-color:var(--ambre)}
+/* `display:inline-flex` ci-dessus l'emporterait sur l'attribut `hidden` :
+   sans cette regle, le bouton natif s'affichait sur ordinateur et ne faisait rien. */
+.partage [hidden]{display:none}
+.partage .toast{font-size:13.5px;color:var(--ambre-c);opacity:0;transition:opacity .3s}
+.partage .toast.vu{opacity:1}
+
 /* piliers */
 .piliers{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bord);border-block:1px solid var(--bord)}
 @media(max-width:900px){.piliers{grid-template-columns:repeat(2,1fr)}}
@@ -309,6 +325,23 @@ footer a:hover{color:var(--ambre-c)}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
           تحميل التطبيق</a>
         <a class="btn btn-nu" href="#tathbit">دليل التثبيت</a>
+      </div>
+      <div class="partage" aria-label="مشاركة">
+        <span class="lib">شارك التطبيق</span>
+        <button class="natif" type="button" id="p-natif" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+          مشاركة</button>
+        <a id="p-wa" target="_blank" rel="noopener" aria-label="واتساب" title="واتساب">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.4 4.9 5-1.3A9.8 9.8 0 1 0 12 2.2zm0 17.9c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.5-6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg></a>
+        <a id="p-fb" target="_blank" rel="noopener" aria-label="فيسبوك" title="فيسبوك">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg></a>
+        <a id="p-tg" target="_blank" rel="noopener" aria-label="تيليغرام" title="تيليغرام">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.4 4.2 2.9 11.4c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.5c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.8-1.4-1.5zM9.8 14.1l-.3 3.9-1.5-4.6 10-6.3-8.2 7z"/></svg></a>
+        <a id="p-x" target="_blank" rel="noopener" aria-label="X" title="X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.7 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L1.8 3h6.4l4.4 5.8L17.7 3zm-1.1 16.2h1.7L7.3 4.7H5.5l11.1 14.5z"/></svg></a>
+        <button type="button" id="p-copie" aria-label="نسخ الرابط" title="نسخ الرابط">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.1 0l2.8-2.8a5 5 0 0 0-7.1-7.1L11.5 4.4"/><path d="M14 11a5 5 0 0 0-7.1 0l-2.8 2.8a5 5 0 0 0 7.1 7.1l1.3-1.3"/></svg></button>
+        <span class="toast" id="p-toast" role="status">تم نسخ الرابط</span>
       </div>
       <div class="meta">
         <span>الإصدار <span class="num" id="v-nom">1.1.0</span></span><span class="sep">·</span>
@@ -588,6 +621,34 @@ fetch('version.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
   ['v-taille','t-s'].forEach(id=>{const e=document.getElementById(id);if(e&&mo)e.textContent=mo});
   const a=document.getElementById('lien-apk'); if(a&&d.apkUrl){a.href=d.apkUrl;a.setAttribute('download','')}
 }).catch(()=>{});
+</script>
+<script>
+/* Partage. Toujours l'adresse canonique, jamais location.href : un visiteur
+   arrive parfois avec ?stats ou une ancre, qu'il ne faut pas propager. */
+(() => {
+  const URL_SITE = 'https://www.salawat.askatek.co.uk/';
+  const TEXTE = 'صلوات — مواقيت الصلاة الرسمية لمساجد الجزائر، على التلفاز وعلى الهاتف. مجاني ودون إعلانات.';
+  const u = encodeURIComponent(URL_SITE), t = encodeURIComponent(TEXTE);
+  const set = (id, href) => { const a = document.getElementById(id); if (a) a.href = href; };
+  set('p-wa', 'https://wa.me/?text=' + t + '%20' + u);
+  set('p-fb', 'https://www.facebook.com/sharer/sharer.php?u=' + u);
+  set('p-tg', 'https://t.me/share/url?url=' + u + '&text=' + t);
+  set('p-x',  'https://twitter.com/intent/tweet?url=' + u + '&text=' + t);
+  // Le partage natif du telephone (WhatsApp, Messenger, SMS... en une feuille) :
+  // affiche seulement la ou le navigateur le propose.
+  const natif = document.getElementById('p-natif');
+  if (navigator.share && natif) {
+    natif.hidden = false;
+    natif.addEventListener('click', () => navigator.share({ title: 'صلوات', text: TEXTE, url: URL_SITE }).catch(() => {}));
+  }
+  const copie = document.getElementById('p-copie'), toast = document.getElementById('p-toast');
+  copie?.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(URL_SITE); }
+    catch { const x = document.createElement('textarea'); x.value = URL_SITE; document.body.appendChild(x); x.select(); document.execCommand('copy'); x.remove(); }
+    copie.classList.add('copie-ok'); toast.classList.add('vu');
+    setTimeout(() => { copie.classList.remove('copie-ok'); toast.classList.remove('vu'); }, 2200);
+  });
+})();
 </script>
 <!-- Compteur de telechargements : invisible pour les visiteurs.
      Il n'apparait qu'avec ?stats dans l'adresse, et l'API GitHub n'est
