@@ -4,7 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>صلوات — مواقيت الصلاة لمساجد الجزائر</title>
-<meta name="description" content="شاشة مواقيت الصلاة لمساجد الجزائر. مواقيت رسمية من تقويم وزارة الشؤون الدينية والأوقاف، تعمل دون اتصال بالإنترنت، على تلفاز أندرويد.">
+<meta name="description" content="شاشة مواقيت الصلاة لمساجد الجزائر. مواقيت رسمية من تقويم وزارة الشؤون الدينية والأوقاف، تعمل دون اتصال بالإنترنت، على تلفاز أندرويد وعلى الهاتف.">
+<link rel="canonical" href="https://www.salawat.askatek.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.salawat.askatek.co.uk/">
+<meta property="og:title" content="صلوات — مواقيت الصلاة لمساجد الجزائر">
+<meta property="og:description" content="مواقيت رسمية من تقويم وزارة الشؤون الدينية والأوقاف، على تلفاز المسجد وعلى الهاتف. تعمل دون إنترنت، مجاناً ودون إعلانات.">
+<meta property="og:image" content="https://www.salawat.askatek.co.uk/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="684">
+<meta property="og:locale" content="ar_DZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="captures/tel-coupole.webp">
 <meta name="theme-color" content="#030305">
 <style>
 /* صلوات — page de présentation. Base : la première version, validée.
@@ -108,11 +119,16 @@ h1{font-size:clamp(62px,10vw,112px);font-weight:700;line-height:.95;letter-spaci
 .tv-bande{flex:1;position:relative;min-height:0}
 .tv-dec{position:absolute;inset-inline:0;text-align:center;font-size:2.6cqw;line-height:1.35;font-weight:300;color:#fff;bottom:9.6cqw}
 .tv-borne{position:absolute;font-size:1.4cqw;line-height:1.3;bottom:4.2cqw;white-space:pre-line}
-.tv-borne.bg{inset-inline-start:0;text-align:start;color:var(--ambre)}
-.tv-borne.bd{inset-inline-end:0;text-align:end;color:var(--t3)}
+/* .bg porte la priere A VENIR : a GAUCHE, comme `borneGauche` dans
+   components/tv/FiletsOr.tsx. .bd porte la precedente, a DROITE. En rtl,
+   inline-end vaut gauche et inline-start vaut droite. */
+.tv-borne.bg{inset-inline-end:0;text-align:end;color:var(--ambre)}
+.tv-borne.bd{inset-inline-start:0;text-align:start;color:var(--t3)}
 .tv-trait{position:absolute;inset-inline:0;bottom:2.2cqw;height:.3cqw;background:rgba(255,255,255,.1);border-radius:99px}
-.tv-parc{position:absolute;inset-inline-end:0;top:0;bottom:0;background:var(--ambre);border-radius:99px;transition:width 1s linear}
-.tv-point{position:absolute;top:50%;width:.95cqw;aspect-ratio:1;border-radius:50%;background:#ffe6b8;transform:translate(50%,-50%);box-shadow:0 0 1.4cqw .45cqw rgba(229,169,60,.6);transition:inset-inline-end 1s linear}
+/* Ancree au bord DROIT et progressant vers la gauche : le temps va de la
+   priere passee vers la suivante, donc de droite a gauche. */
+.tv-parc{position:absolute;inset-inline-start:0;top:0;bottom:0;background:var(--ambre);border-radius:99px;transition:width 1s linear}
+.tv-point{position:absolute;top:50%;width:.95cqw;aspect-ratio:1;border-radius:50%;background:#ffe6b8;transform:translate(-50%,-50%);box-shadow:0 0 1.4cqw .45cqw rgba(229,169,60,.6);transition:inset-inline-start 1s linear}
 .tv-socle{align-self:center;display:flex;align-items:center;gap:1.2cqw;margin-top:.8cqw;padding:.5cqw 6cqw;background:var(--voile);border:1px solid rgba(255,255,255,.05);border-radius:.4cqw}
 .tv-jl{font-size:2.1cqw;color:#e6e9f2}
 .tv-jf{width:1px;height:1.7cqw;background:rgba(255,255,255,.15)}
@@ -137,6 +153,55 @@ h1{font-size:clamp(62px,10vw,112px);font-weight:700;line-height:.95;letter-spaci
 .tv[data-t="cadres"] .tv-nom{color:#bcd5ef}
 .tv[data-t="cadres"] .tv-socle{background:rgba(0,60,110,.72);border-color:rgba(212,175,55,.3)}
 .tv[data-t="cadres"] .tv-bandeau{background:rgba(0,0,0,.35)}
+
+/* héros : le téléviseur et, devant lui, le téléphone */
+.duo{position:relative;padding-block-end:9%}
+.duo .cadre{margin-inline-end:22%}
+.tv-reel{display:block;width:100%;height:auto;border-radius:9px}
+.duo .tel{position:absolute;inset-inline-end:0;bottom:0;width:25%;height:auto;z-index:2;
+  filter:drop-shadow(0 30px 38px rgba(0,0,0,.9)) drop-shadow(0 0 1px rgba(255,255,255,.1));
+  animation:flotte 7s ease-in-out infinite}
+@keyframes flotte{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media(max-width:940px){.duo{max-width:620px;width:100%;margin-inline:auto}.duo .cadre{margin-inline-end:24%}.duo .tel{width:28%}}
+
+/* المظاهر : onglets téléphone / téléviseur */
+.onglets{display:inline-flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--bord);background:var(--voile);margin-bottom:clamp(28px,4vw,40px)}
+.onglet{font-family:Tajawal;font-size:15.5px;font-weight:700;color:var(--t2);padding:10px 24px;border-radius:999px;border:0;background:none;cursor:pointer;display:flex;gap:9px;align-items:center;transition:background .3s,color .3s}
+.onglet .nb{font-family:InterNum;font-weight:400;font-size:13px;opacity:.65}
+.onglet:hover{color:var(--t1)}
+.onglet[aria-selected="true"]{background:var(--ambre);color:#1a1205}
+.panneau{animation:apparait .5s cubic-bezier(.16,1,.3,1)}
+@keyframes apparait{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* le rail des quatre téléphones : grille sur grand écran, défilement sur téléphone */
+.rail{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.6vw,34px);align-items:start}
+.tel-f{margin:0;text-align:center}
+.tel-f img{width:100%;height:auto;aspect-ratio:431/889;object-fit:contain;display:block;filter:drop-shadow(0 26px 34px rgba(0,0,0,.85));transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.tel-f:hover img{transform:translateY(-8px)}
+.tel-f figcaption{margin-top:18px;padding-inline:4px}
+.tel-f h3{font-size:16.5px;font-weight:700;margin-bottom:5px;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
+.tel-f p{font-size:14px;color:var(--t3);font-weight:300;line-height:1.65}
+.badge{font-size:11.5px;font-weight:700;color:#1a1205;background:var(--ambre);padding:2px 10px;border-radius:999px;line-height:1.6}
+.points{display:none;justify-content:center;gap:8px;margin-top:18px}
+.points span{width:7px;height:7px;border-radius:99px;background:rgba(255,255,255,.2);transition:background .3s,width .3s}
+.points span.on{background:var(--ambre);width:22px}
+@media(max-width:900px){
+  .rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    gap:18px;padding-inline:19%;margin-inline:calc(-1*clamp(20px,4vw,32px));padding-block:6px 14px}
+  .rail::-webkit-scrollbar{display:none}
+  .tel-f{flex:0 0 62%;scroll-snap-align:center}
+  .tel-f img{transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s}
+  .tel-f:not(.vise) img{transform:scale(.9);opacity:.55}
+  .points{display:flex}
+}
+
+/* le téléviseur : trois captures réelles en fondu, jamais rognées */
+.ecr{position:relative;aspect-ratio:1061/610;border-radius:9px;overflow:hidden;background:#000}
+.ecr img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .7s}
+.ecr img.on{opacity:1}
+#p-tv .grille{margin-top:22px}
+#p-tv .carte{cursor:pointer}
+#p-tv .carte.on{border-color:rgba(229,169,60,.5);background:rgba(229,169,60,.055)}
 
 /* piliers */
 .piliers{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bord);border-block:1px solid var(--bord)}
@@ -237,7 +302,7 @@ footer a:hover{color:var(--ambre-c)}
     <div>
       <div class="sourcil">مواقيت رسمية · وزارة الشؤون الدينية والأوقاف</div>
       <h1>صلوات</h1>
-      <p class="lede">شاشة مواقيت الصلاة لمساجد الجزائر. مواقيت مأخوذة <b>حرفياً من التقويم الرسمي</b>،
+      <p class="lede">مواقيت الصلاة لمساجد الجزائر، على شاشة المسجد وعلى الهاتف. مأخوذة <b>حرفياً من التقويم الرسمي</b>،
         دون أي حساب فلكي، تعمل <b>دون اتصال بالإنترنت</b>، ومصمَّمة لتُقرأ من آخر القاعة.</p>
       <div class="actes">
         <a class="btn btn-or" href="#tahmil">
@@ -248,12 +313,16 @@ footer a:hover{color:var(--ambre-c)}
       <div class="meta">
         <span>الإصدار <span class="num" id="v-nom">1.1.0</span></span><span class="sep">·</span>
         <span><span class="num" id="v-taille">99</span> ميغابايت</span><span class="sep">·</span>
-        <span>أندرويد <span class="num">5.0</span> فما فوق</span><span class="sep">·</span>
+        <span>تلفاز وهاتف أندرويد <span class="num">5.0</span>+</span><span class="sep">·</span>
         <span>مجاني، دون إعلانات</span>
       </div>
     </div>
-    <div class="rev">
-      <div class="cadre"><div class="tvq"><div class="tv" id="tv" data-t="filets"></div></div></div>
+    <div class="rev duo">
+      <!-- La vraie capture du televiseur, pas la maquette dessinee : la maquette
+           divergeait de l'app (cote du QR, entre autres). Le div #tv reste, cache,
+           parce que le script de la page y ecrit ; le retirer casserait la suite. -->
+      <div class="cadre"><img class="tv-reel" src="captures/tv-filets.webp" width="1055" height="601" alt="صلوات على تلفاز المسجد — مظهر خطوط ذهبية"><div class="tvq" hidden><div class="tv" id="tv" data-t="filets"></div></div></div>
+      <img class="tel" src="captures/tel-coupole.webp" width="402" height="883" alt="صلوات على الهاتف — شكل قوس بين الصلاتين">
     </div>
   </div>
 </header>
@@ -298,19 +367,45 @@ footer a:hover{color:var(--ambre-c)}
   <div class="wrap">
     <div class="chapeau rev">
       <div class="kicker">المظاهر</div>
-      <h2>ثلاثة مظاهر، شاشة واحدة</h2>
-      <p>اختر المظهر الذي يناسب قاعتك وإضاءتها. التغيير فوري، ويُحفظ في التلفاز. جرّبها الآن على الشاشة في الأعلى.</p>
+      <h2>على شاشة المسجد، وفي جيبك</h2>
+      <p>تطبيق واحد يعمل على تلفاز أندرويد وعلى الهاتف، ويختار العرض المناسب وحده. أربعة أشكال للهاتف وثلاثة مظاهر للتلفاز، والتغيير فوري من الإعدادات.</p>
     </div>
     <div class="fil" style="margin-bottom:30px"></div>
-    <div class="themes rev">
-      <button class="pastille" data-t="filets" aria-pressed="true">خطوط ذهبية</button>
-      <button class="pastille" data-t="nuit" aria-pressed="false">ليل عنبري</button>
-      <button class="pastille" data-t="cadres" aria-pressed="false">بطاقات مؤطَّرة</button>
+    <div class="onglets rev" role="tablist" aria-label="الجهاز">
+      <button class="onglet" role="tab" id="o-tel" aria-controls="p-tel" aria-selected="true">الهاتف <span class="nb">4</span></button>
+      <button class="onglet" role="tab" id="o-tv" aria-controls="p-tv" aria-selected="false">التلفاز <span class="nb">3</span></button>
     </div>
-    <div class="grille rev">
-      <div class="carte"><h3>خطوط ذهبية</h3><p>المظهر الافتراضي. صورة المسجد في الخلفية، وخطوط ذهبية رفيعة. مناسب لقاعة مضيئة.</p></div>
-      <div class="carte"><h3>ليل عنبري</h3><p>خلفية متدرّجة من الكحلي إلى الأسود تقريباً، ولون عنبري واحد. أهدأ للعين ليلاً.</p></div>
-      <div class="carte"><h3>بطاقات مؤطَّرة</h3><p>بطاقات بإطار ذهبي، والصلاة القادمة مميّزة بسبعة أساليب على اختيارك.</p></div>
+
+    <div class="panneau" id="p-tel" role="tabpanel" aria-labelledby="o-tel">
+      <div class="rail" id="rail">
+        <figure class="tel-f vise"><img src="captures/tel-coupole.webp" width="402" height="883" loading="lazy" alt="شكل قوس بين الصلاتين على الهاتف">
+          <figcaption><h3>قوس بين الصلاتين <span class="badge">الافتراضي</span></h3><p>قوس يمتدّ من الصلاة الماضية إلى القادمة، والوقت المتبقّي في وسطه.</p></figcaption></figure>
+        <figure class="tel-f"><img src="captures/tel-arc.webp" width="402" height="883" loading="lazy" alt="شكل قوس النهار على الهاتف">
+          <figcaption><h3>قوس النهار</h3><p>الصلوات على مسار الشمس، والنقطة المضيئة هي لحظتك الآن.</p></figcaption></figure>
+        <figure class="tel-f"><img src="captures/tel-anneau.webp" width="402" height="883" loading="lazy" alt="شكل حلقة التقدّم على الهاتف">
+          <figcaption><h3>حلقة التقدّم</h3><p>حلقة تمتلئ مع مرور الوقت، والعدّ التنازلي في مركزها.</p></figcaption></figure>
+        <figure class="tel-f"><img src="captures/tel-cartouche.webp" width="402" height="883" loading="lazy" alt="شكل إطار محفور على الهاتف">
+          <figcaption><h3>إطار محفور</h3><p>العدّ التنازلي في إطار بخطّين، مع اسم الصلاة ووقتها.</p></figcaption></figure>
+      </div>
+      <div class="points" id="points" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="panneau" id="p-tv" role="tabpanel" aria-labelledby="o-tv" hidden>
+      <div class="themes">
+        <button class="pastille" data-t="filets" aria-pressed="true">خطوط ذهبية</button>
+        <button class="pastille" data-t="nuit" aria-pressed="false">ليل عنبري</button>
+        <button class="pastille" data-t="cadres" aria-pressed="false">بطاقات مؤطَّرة</button>
+      </div>
+      <div class="cadre"><div class="ecr">
+          <img class="on" data-t="filets" src="captures/tv-filets.webp" loading="lazy" alt="مظهر خطوط ذهبية على التلفاز">
+          <img data-t="nuit" src="captures/tv-nuit.webp" loading="lazy" alt="مظهر ليل عنبري على التلفاز">
+          <img data-t="cadres" src="captures/tv-cadres.webp" loading="lazy" alt="مظهر بطاقات مؤطَّرة على التلفاز">
+      </div></div>
+      <div class="grille">
+        <div class="carte on" data-t="filets"><h3>خطوط ذهبية</h3><p>المظهر الافتراضي. صورة المسجد في الخلفية، وخطوط ذهبية رفيعة. مناسب لقاعة مضيئة.</p></div>
+        <div class="carte" data-t="nuit"><h3>ليل عنبري</h3><p>خلفية متدرّجة من الكحلي إلى الأسود تقريباً، ولون عنبري واحد. أهدأ للعين ليلاً.</p></div>
+        <div class="carte" data-t="cadres"><h3>بطاقات مؤطَّرة</h3><p>بطاقات بإطار ذهبي، والصلاة القادمة مميّزة بسبعة أساليب على اختيارك.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -409,7 +504,7 @@ tv.innerHTML=`<div class="tv-fond"></div><div class="tv-photo"></div><div class=
   <div class="tv-bande"><div class="tv-dec"></div><div class="tv-borne bg"></div><div class="tv-borne bd"></div>
     <div class="tv-trait"><div class="tv-parc"></div><div class="tv-point"></div></div></div>
   <div class="tv-socle"><span class="tv-jl">صلاة الجمعة</span><span class="tv-jf"></span><span class="tv-jt num">13:00</span></div></div>
-<div class="tv-bandeau"><img class="tv-qr" src="data:image/png;base64,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" alt=""><span class="tv-bt">أحاديث نبوية</span>
+<div class="tv-bandeau"><img class="tv-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8AQMAAACffoKcAAAABlBMVEULDhT07+KKxIDeAAABwUlEQVR42u2cQa6DMAwFn/4Fcv9b5gZ8EE3yYrpiUXsxqEJVymyqkeU8DDreHV2AgICAgICAgICAPwM1j3YtXudz8f4uxQsu8E8vD0DAl8fH1XasL6fAfVs/z9sFuAqY6updM6eTdy2d3sYLcBWwjKvrp7GOq4DlXB2FNLYBuApYrF+duvqZfhWwiqu2zf/+IQcArOFqDLLuqKqbnPEa/lXAvB7gVrSthMq6U8UIF1cB83qA6GRXtNcbV1wFTMwBnnes9sV5DwtXAfMzK41CKsXtv8Y6rgIWqKsrRJ1n32GNlgBXAXNzAEm7jVZg2VsBlsoBZkfax2/t2IZYPMLCVcDUftWLp9v7JbnCVcCsHqA/BlS64scHZXEVMLVf9dK6bfy7YjKAq4Cp/eq2/beU1esqrgKWqKst5lfTVQ8HcBWwyjxAcHgOWflTA7gKmFdXQ9DqYwBh3BpXAYvMr4Y7At4VkAMAFtlbhWdVfDhw+UxdBcx2dXWkNhYofzlA4xkWwFqurk4g9K7e3+IqYJG6ai2rHg9f4ypglfeu2NMrHz/t1gB1FbBODvAcBZTdFMBVwFxXeTEdICAgICAgICBgSfAfmWa6n3EDIoAAAAAASUVORK5CYII=" alt=""><span class="tv-bt">أحاديث نبوية</span>
   <span class="tv-bx">عن أبي هريرة، عن النبي ﷺ قال: (أصدق الحديث كتاب الله، وخير الهدي هدي محمد ﷺ)</span></div>`;
 const $=s=>tv.querySelector(s), cartes=[...tv.querySelectorAll('.tv-carte')];
 let dateAr='الجمعة ١٨ سبتمبر ٢٠٢٦';
@@ -427,14 +522,29 @@ function battre(){
   const pc=(Math.max(0,Math.min(1,(tot-reste)/tot))*100).toFixed(2)+'%';
   $('.tv-dec').textContent=`باقي على صلاة ${cour.nom} : ${duree(reste)}`;
   $('.bg').textContent=`${cour.nom}\n${cour.t}`; $('.bd').textContent=`${prec.nom}\n${prec.t}`;
-  $('.tv-parc').style.width=pc; $('.tv-point').style.insetInlineEnd=pc;
+  $('.tv-parc').style.width=pc; $('.tv-point').style.insetInlineStart=pc;
 }
 battre(); setInterval(battre,1000);
 
-document.querySelectorAll('.pastille').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.pastille').forEach(x=>x.setAttribute('aria-pressed','false'));
-  b.setAttribute('aria-pressed','true'); tv.dataset.t=b.dataset.t;
-}));
+/* المظاهر : onglets, galerie du téléviseur, rail des téléphones */
+const onglets=[...document.querySelectorAll('.onglet')];
+onglets.forEach(o=>o.addEventListener('click',()=>onglets.forEach(x=>{
+  const on=x===o; x.setAttribute('aria-selected',on);
+  document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+})));
+const choisirTv=t=>{
+  document.querySelectorAll('.pastille').forEach(x=>x.setAttribute('aria-pressed',x.dataset.t===t));
+  document.querySelectorAll('.ecr img').forEach(i=>i.classList.toggle('on',i.dataset.t===t));
+  document.querySelectorAll('#p-tv .carte').forEach(c=>c.classList.toggle('on',c.dataset.t===t));
+};
+document.querySelectorAll('.pastille,#p-tv .carte').forEach(b=>b.addEventListener('click',()=>choisirTv(b.dataset.t)));
+const rail=document.getElementById('rail'),figs=[...rail.children],pts=[...document.querySelectorAll('#points span')];
+let rafRail=0;
+rail.addEventListener('scroll',()=>{cancelAnimationFrame(rafRail);rafRail=requestAnimationFrame(()=>{
+  const r=rail.getBoundingClientRect(),c=r.left+r.width/2;let k0=0,d0=1e9;
+  figs.forEach((f,k)=>{const b=f.getBoundingClientRect(),d=Math.abs(b.left+b.width/2-c);if(d<d0){d0=d;k0=k}});
+  figs.forEach((f,k)=>f.classList.toggle('vise',k===k0)); pts.forEach((p,k)=>p.classList.toggle('on',k===k0));
+})},{passive:true});
 
 /* قوس النهار : schéma — demi-ellipse du lever au coucher, nuit repliée sous
    l'horizon avec une amplitude moindre. Repères placés par leurs heures réelles. */
