@@ -589,5 +589,29 @@ fetch('version.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
   const a=document.getElementById('lien-apk'); if(a&&d.apkUrl){a.href=d.apkUrl;a.setAttribute('download','')}
 }).catch(()=>{});
 </script>
+<!-- Compteur de telechargements : invisible pour les visiteurs.
+     Il n'apparait qu'avec ?stats dans l'adresse, et l'API GitHub n'est
+     appelee QUE dans ce cas (aucune requete de plus pour les visiteurs). -->
+<script>
+if (new URLSearchParams(location.search).has('stats')) {
+  const b = document.createElement('div');
+  b.id = 'stats';
+  b.style.cssText = 'position:fixed;inset-inline-start:14px;bottom:14px;z-index:99;padding:12px 16px;border-radius:12px;'
+    + 'background:rgba(10,12,18,.92);border:1px solid rgba(229,169,60,.4);color:#f2f4f9;font:14px/1.6 InterNum,Tajawal,sans-serif;direction:ltr;text-align:left';
+  b.textContent = 'Chargement des statistiques…';
+  document.body.appendChild(b);
+  fetch('https://api.github.com/repos/bzighab/salawat-landing-page/releases')
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(rels => {
+      let total = 0;
+      const lignes = rels.map(rel => (rel.assets || []).map(a => {
+        total += a.download_count;
+        return rel.tag_name + ' · ' + a.name + ' : ' + a.download_count;
+      }).join('<br>')).filter(Boolean);
+      b.innerHTML = '<b style="color:#E5A93C">Téléchargements : ' + total + '</b><br>' + (lignes.join('<br>') || 'aucun fichier');
+    })
+    .catch(e => { b.textContent = 'Statistiques indisponibles (' + e.message + ')'; });
+}
+</script>
 </body>
 </html>
