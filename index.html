@@ -176,6 +176,7 @@ h1{font-size:clamp(62px,10vw,112px);font-weight:700;line-height:.95;letter-spaci
 /* le rail des quatre téléphones : grille sur grand écran, défilement sur téléphone */
 .rail{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.6vw,34px);align-items:start}
 .tel-f{margin:0;text-align:center}
+.safar-duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:30px;max-width:720px;margin-inline:auto}
 .tel-f img{width:100%;height:auto;aspect-ratio:431/889;object-fit:contain;display:block;filter:drop-shadow(0 26px 34px rgba(0,0,0,.85));transition:transform .5s cubic-bezier(.16,1,.3,1)}
 .tel-f:hover img{transform:translateY(-8px)}
 .tel-f figcaption{margin-top:18px;padding-inline:4px}
@@ -306,7 +307,7 @@ footer a:hover{color:var(--ambre-c)}
 <nav class="nav" id="nav"><div class="wrap">
   <div class="marque"><span class="pt"></span> صلوات</div>
   <div class="liens">
-    <a href="#apercu">نظرة عامة</a><a href="#nahar">قوس النهار</a><a href="#themes">المظاهر</a>
+    <a href="#apercu">نظرة عامة</a><a href="#nahar">قوس النهار</a><a href="#themes">المظاهر</a><a href="#safar">السفر</a>
     <a href="#tathbit">التثبيت</a><a href="#idadat">الإعدادات</a>
   </div>
   <a class="mini" href="#tahmil">تحميل التطبيق</a>
@@ -439,6 +440,35 @@ footer a:hover{color:var(--ambre-c)}
         <div class="carte" data-t="nuit"><h3>ليل عنبري</h3><p>خلفية متدرّجة من الكحلي إلى الأسود تقريباً، ولون عنبري واحد. أهدأ للعين ليلاً.</p></div>
         <div class="carte" data-t="cadres"><h3>بطاقات مؤطَّرة</h3><p>بطاقات بإطار ذهبي، والصلاة القادمة مميّزة بسبعة أساليب على اختيارك.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="safar">
+  <div class="wrap">
+    <div class="chapeau rev">
+      <div class="kicker">وضع السفر</div>
+      <h2>مسافر؟ الشاشة تنقسم نصفين</h2>
+      <p>تختار ولاية وبلدية إقامتك في السفر، فتُعرض أوقاتها بخطّ كبير، وبجانب كلّ وقت وقتُ مسجدك بخطّ صغير. الأذان يُرفع على توقيت مكان السفر، ومسجدك يبقى كما هو.</p>
+    </div>
+    <div class="fil" style="margin-bottom:30px"></div>
+
+    <div class="safar-duo">
+      <figure class="tel-f"><img src="captures/tel-safar.webp" width="401" height="882" loading="lazy" alt="وضع السفر على الهاتف: أوقات مكان السفر وأوقات المسجد جنباً إلى جنب">
+        <figcaption><h3>الشاشة في السفر</h3><p>في الأعلى: من مسجدي ← إلى مكان السفر. يمين الجدول أوقات سفري، ويساره أوقات مسجدي.</p></figcaption></figure>
+      <figure class="tel-f"><img src="captures/tel-safar-reglages.webp" width="402" height="852" loading="lazy" alt="إعدادات وضع السفر: التفعيل، الولاية والبلدية، وتاريخ العودة">
+        <figcaption><h3>ثلاثة إعدادات فقط</h3><p>تفعيل، ثم الولاية والبلدية، وتاريخ عودة اختياري.</p></figcaption></figure>
+    </div>
+
+    <div class="grille" style="margin-top:34px">
+      <div class="carte rev"><h3>التفعيل والإطفاء</h3><p>زرّ واحد. عند الإطفاء يعود كلّ شيء إلى مسجدك: الأوقات والأذان كما كانت.</p></div>
+      <div class="carte rev"><h3>مكان الإقامة</h3><p>ولاية ثمّ بلدية، من القائمة نفسها التي اخترت بها مسجدك. الأوقات من التقويم الرسمي، لا حساب ولا تقدير.</p></div>
+      <div class="carte rev"><h3>تاريخ العودة</h3><p>اختياري، يوماً بيوم. في ذلك التاريخ يُطفأ وضع السفر وحده، ولو نسيته.</p></div>
+      <div class="carte rev"><h3>الأذان يتبعك</h3><p>الأذان والعدّ التنازلي على توقيت مكان السفر، حتى والتطبيق مغلق.</p></div>
+      <div class="carte rev"><h3>الجمعة</h3><p>وقت خطبة مسجدك لا يصلح في مدينة أخرى، فتُعرض الجمعة على وقت الظهر في مكان السفر، ومكتوب «الجمعة / الظهر».</p></div>
+      <div class="carte rev"><h3>الإقامة لا تُعرض</h3><p>دقائق الإقامة خاصّة بمسجدك، ولا تُعرف في مسجد آخر، فلا تظهر في السفر.</p></div>
+      <div class="carte rev"><h3>مسجدك أمامك دائماً</h3><p>أوقات مسجدك تبقى في نصف الشاشة: تعرف وقت الفجر عند أهلك وأنت بعيد.</p></div>
+      <div class="carte rev"><h3>بلا تحديد موقع</h3><p>لا يطلب التطبيق موقعك ولا إذن GPS. أنت من يكتب المكان، ولا شيء يُرسَل.</p></div>
     </div>
   </div>
 </section>
