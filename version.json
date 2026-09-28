@@ -1,8 +1,8 @@
 {
-  "versionCode": 22,
+  "versionCode": 39,
   "versionName": "1.1.0",
-  "tailleMo": 117,
+  "tailleMo": 108,
   "apkUrl": "https://github.com/bzighab/salawat-landing-page/releases/latest/download/salawat.apk",
-  "sha256": "D6B0D8A3618036E9DC2373353B971731E427D506314DE788150136EEDEB4F44B",
+  "sha256": "289631E8681DAF4444E0B55E2D9A91331F02D9FD8FA298C0ED8319178A62A3F4",
   "notes": "الأذان في وقته حتى والتطبيق مغلق، أربعة أذانات، ووضع السفر"
 }
