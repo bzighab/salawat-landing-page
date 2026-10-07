@@ -1,8 +1,8 @@
 {
-  "versionCode": 50,
+  "versionCode": 51,
   "versionName": "1.1.0",
-  "tailleMo": 125,
+  "tailleMo": 126,
   "apkUrl": "https://github.com/bzighab/salawat-landing-page/releases/latest/download/salawat.apk",
-  "sha256": "4BD67D25AF0F28333E9F7F6D2A21F2D2ECB93C21B641D400B61C62F0848AC4ED",
+  "sha256": "5E51FF1E2AABED7EBAC612FAC659D4A069A6EFAC186E144C40DFAC2F4942AD12",
   "notes": "شكل جديد للشاشة بأرقام كبيرة، الحديث على كامل الشاشة، وشاشة التقدم نحو الصلاة"
 }
