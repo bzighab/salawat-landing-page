@@ -4,5 +4,5 @@
   "tailleMo": 126,
   "apkUrl": "https://github.com/bzighab/salawat-landing-page/releases/latest/download/salawat.apk",
   "sha256": "5E51FF1E2AABED7EBAC612FAC659D4A069A6EFAC186E144C40DFAC2F4942AD12",
-  "notes": "شكل جديد للشاشة بأرقام كبيرة، الحديث على كامل الشاشة، وشاشة التقدم نحو الصلاة"
+  "notes": "تحسين التنقل في الإعدادات بجهاز التحكم، وإصلاح زر التحديث مع عرض نسبة التنزيل، وعنوان الأحاديث النبوية بخط الثلث، وعرض أوقات الصلاة أسفل شاشة التقدم نحو الصلاة."
 }
