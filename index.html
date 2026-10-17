@@ -346,7 +346,7 @@ footer a:hover{color:var(--ambre-c)}
       </div>
       <div class="meta">
         <span>الإصدار <span class="num" id="v-nom">1.1.0</span></span><span class="sep">·</span>
-        <span><span class="num" id="v-taille">99</span> ميغابايت</span><span class="sep">·</span>
+        <span><span class="num" id="v-taille">126</span> ميغابايت</span><span class="sep">·</span>
         <span>تلفاز وهاتف أندرويد <span class="num">5.0</span>+</span><span class="sep">·</span>
         <span>مجاني، دون إعلانات</span>
       </div>
@@ -523,12 +523,13 @@ footer a:hover{color:var(--ambre-c)}
         <div class="kicker">التحميل</div>
         <h2>ابدأ الآن</h2>
         <p>ملف واحد، تثبيت واحد، ثم يعمل التلفاز وحده.</p>
-        <a class="btn btn-or" id="lien-apk" href="#">
+        <a class="btn btn-or" id="lien-apk" download
+           href="https://github.com/bzighab/salawat-landing-page/releases/latest/download/salawat.apk">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
           تحميل <span class="num">APK</span></a>
         <table class="tab">
           <tr><td>الإصدار</td><td class="num" id="t-v">1.1.0</td></tr>
-          <tr><td>الحجم</td><td><span class="num" id="t-s">99</span> ميغابايت</td></tr>
+          <tr><td>الحجم</td><td><span class="num" id="t-s">126</span> ميغابايت</td></tr>
           <tr><td>الحد الأدنى</td><td>أندرويد <span class="num">5.0</span></td></tr>
           <tr><td>الأجهزة</td><td>تلفاز أندرويد · هاتف أندرويد</td></tr>
         </table>
@@ -645,12 +646,15 @@ document.querySelectorAll('.fil').forEach(el=>io.observe(el));
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('dur',scrollY>40),{passive:true});
 
-fetch('version.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
+fetch('version.json',{cache:'no-store'}).then(r=>{
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  return r.json();
+}).then(d=>{
   if(!d)return; const mo=d.tailleMo??d.sizeMB;
   ['v-nom','t-v'].forEach(id=>{const e=document.getElementById(id);if(e&&d.versionName)e.textContent=d.versionName});
   ['v-taille','t-s'].forEach(id=>{const e=document.getElementById(id);if(e&&mo)e.textContent=mo});
   const a=document.getElementById('lien-apk'); if(a&&d.apkUrl){a.href=d.apkUrl;a.setAttribute('download','')}
-}).catch(()=>{});
+}).catch(e=>console.error('version.json illisible — les valeurs de repli du HTML restent affichees',e));
 </script>
 <script>
 /* Partage. Toujours l'adresse canonique, jamais location.href : un visiteur
